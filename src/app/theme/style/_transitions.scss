@@ -1,0 +1,13 @@
+@function swift-ease-out($property) {
+  // The Material default animation curves.
+  $transition: $property 200 300;
+
+  @return $transition;
+}
+
+@function fast-out-slow($property) {
+  // The Material default animation curves.
+  $transition: $property 225ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @return $transition;
+}

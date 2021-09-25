@@ -1,0 +1,15 @@
+<mat-toolbar class="matero-toolbar">
+    <button mat-icon-button class="matero-toolbar-button" *ngIf="showToggle" (click)="toggleSidenav.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img src="./assets/images/cg.gif" width="50"/>&nbsp;&nbsp;&nbsp;
+  <div class="text-center"><span><h4>DIGITAL SECRETARIAT, Government of Chhattisgarh</h4></span></div>
+    <span fxFlex></span>
+    
+    <app-notification fxHide.lt-sm></app-notification>
+
+    <app-translate></app-translate>
+
+    <app-user></app-user>
+
+</mat-toolbar>

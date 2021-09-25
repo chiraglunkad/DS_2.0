@@ -1,0 +1,114 @@
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="form">
+            <mat-card-title class="text-center">Ticket Generation</mat-card-title>
+            <span><strong>Raise a Request</strong></span>
+            <hr style="margin-top: 3px; background-color: brown; height: 5px;">
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 20px;">
+                    <span style="color: red;">Please provide all mandatory fields marked (*)</span>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <ng-select formControlName="modules" placeholder="Select Modules *" appearance="outline">
+                        <ng-option *ngFor="let d of modules" [value]="d.code_type_id">{{d.name | titlecase}}
+                        </ng-option>
+                    </ng-select>
+                    <mat-error *ngIf="isValidInput('modules')">
+                        <mat-error *ngIf="form.controls['modules'].errors!.required">
+                            Modules Selection is
+                            <strong>required</strong>.
+                        </mat-error>
+                    </mat-error>
+                   
+                </div>
+                <div class="form-group col-sm-4">
+                    <ng-select formControlName="category" placeholder="Select Category *" appearance="outline">
+                        <ng-option *ngFor="let d of category" [value]="d.code_type_id">{{d.name | titlecase}}
+                        </ng-option>
+                    </ng-select>
+                    <mat-error *ngIf="isValidInput('category')">
+                        <mat-error *ngIf="form.controls['category'].errors!.required">
+                            Category Selection is
+                            <strong>required</strong>.
+                        </mat-error>
+                    </mat-error>
+
+                </div>
+                <div class="form-group col-sm-4">
+                    <ng-select formControlName="isreproducible" placeholder="Is it Reproducible" appearance="outline">
+                        <ng-option *ngFor="let d of reproducible" [value]="d.code_type_id">{{d.name | titlecase}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <ng-select placeholder="Select Priority" formControlName="priority" appearance="outline">
+                        <ng-option *ngFor="let d of priority" [value]="d.code_type_id">{{d.name | titlecase}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <ng-select placeholder="Select Department *" formControlName="department"
+                        (change)="getEmployeeByDept($event);users.handleClearClick();" appearance="outline">
+                        <ng-option *ngFor="let d of department" [value]="d.org_id">{{d.name | titlecase}}</ng-option>
+                    </ng-select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <ng-select placeholder="Select Users *" formControlName="user_selected" appearance="outline" #users>
+                        <ng-option *ngFor="let d of userlist_bydeptid" [value]="d.user_id">{{d.user_name | titlecase}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+                <div class="form-group col-md-4">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-label>Issue Description <span style="color: red;"><strong>*</strong></span></mat-label>
+                        <textarea matInput formControlName="issue_description" maxlength="200"
+                            placeholder="Issue Description"></textarea>
+                        <!-- <mat-hint>Characters Remaining: {{issue_description.length}}/200</mat-hint> -->
+                        <mat-error *ngIf="isValidInput('issue_description')">
+                            <mat-error *ngIf="form.controls['issue_description'].errors!.required">
+                                Issue Description is
+                                <strong>required</strong>.
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group col-md-4">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-label>Contact No. <span style="color: red;"><strong>*</strong></span></mat-label>
+                        <input matInput number type="text" formControlName="contact_no" placeholder="Contact No."
+                            maxlength="10" autocomplete="off">
+                        <mat-error *ngIf="isValidInput('contact_no')">
+                            <mat-error *ngIf="form.controls['contact_no'].errors!.required">
+                                Contact No. is
+                                <strong>required</strong>.
+                            </mat-error>
+                            <mat-error *ngIf="form.controls['contact_no'].errors!.pattern">
+                                Contact No. is
+                                <strong>Invalid</strong>.
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group col-md-4">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-label class="required">Reference(if any)</mat-label>
+                        <input matInput number type="text" formControlName="reference" placeholder="Reference(if any)"
+                            maxlength="10" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+            <hr style="margin-top: 3px; background-color: brown; height: 5px;">
+           
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-success" type="button" (click)="createTicket()"
+                        [disabled]="!form.valid">Create</button> &nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-info" type="button" (click)="resetform()">Reset</button>
+                </div>
+               
+            </div>
+
+        </form>
+    </mat-card-content>
+</mat-card>

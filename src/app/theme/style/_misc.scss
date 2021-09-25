@@ -1,0 +1,11 @@
+.badge {
+  @include badge();
+}
+
+.scrollbar-thin {
+  @include scrollbar-thin();
+}
+
+.scrollbar-none {
+  @include scrollbar-none();
+}

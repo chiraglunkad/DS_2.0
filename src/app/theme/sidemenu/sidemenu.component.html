@@ -1,0 +1,165 @@
+<mat-nav-list>
+    <a class="btn-menu" style="width:100%; " mat-raised-button>
+        <span class="mat-button-wrapper" style="float: left;">
+            <mat-icon color="warn">home</mat-icon>Chirag
+        </span>
+    </a>
+</mat-nav-list>
+<mat-nav-list *ngFor="let menu of menu$;let i=index;">
+
+    <a [routerLink]="[menu.route]" style="width:100%;" [class.active]="selectedPath ===  menu.route" class="btn-menu"
+        mat-raised-button>
+        <span class="mat-button-wrapper" style="float: left;">
+            <mat-icon color="warn">home</mat-icon>{{menu.name}}
+        </span>
+    </a>
+    <!-- <mat-expansion-panel *ngIf="!menu.route">
+        <mat-expansion-panel-header (click)="getNext(menu.menu_code,i)">
+            <mat-panel-title>
+                <mat-icon color="primary">{{menu.icon}}</mat-icon> {{menu.name}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a [routerLink]="[item.route]" *ngFor="let item of menu.child" mat-button
+            [class.active]="selectedPath ===  item.route" class="btn-menu">
+            <mat-icon color="accent">{{item.icon}}</mat-icon>{{item.name}}
+        </a>
+    </mat-expansion-panel> -->
+</mat-nav-list>
+
+<!-- <ng-container [ngTemplateOutlet]="menuListTpl"
+    [ngTemplateOutletContext]="{menuList: menu$ , parentRoute: [], level: 0}">
+</ng-container>
+
+<ng-template #menuListTpl let-menuList="menuList" let-parentRoute="parentRoute" let-level="level">
+    <ul navAccordion class="matero-sidemenu {{level>0 ? 'matero-sidemenu-sub' : ''}} level-{{level}}">
+       
+        <ng-container *ngFor="let menuItem of menuList">
+
+            <li navAccordionItem class="matero-sidemenu-item" routerLinkActive="active" [group]="menuItem.route"
+                [type]="menuItem.type">
+
+                <a class="matero-sidemenu-link" [routerLink]="buildRoute(parentRoute.concat([menuItem.route]))"
+                    *ngIf="menuItem.type==='link'" matRipple [matRippleDisabled]="!ripple">
+                    <ng-container [ngTemplateOutlet]="linkTypeTpl"
+                        [ngTemplateOutletContext]="{item: menuItem, level: level}">
+                    </ng-container>
+                </a>
+
+                <a class="matero-sidemenu-link" [href]="menuItem.route" *ngIf="menuItem.type==='extLink'" matRipple
+                    [matRippleDisabled]="!ripple">
+                    <ng-container [ngTemplateOutlet]="linkTypeTpl"
+                        [ngTemplateOutletContext]="{item: menuItem, level: level}">
+                    </ng-container>
+                </a>
+
+                <a class="matero-sidemenu-link" [href]="menuItem.route" target="_blank"
+                    *ngIf="menuItem.type==='extTabLink'" matRipple [matRippleDisabled]="!ripple">
+                    <ng-container [ngTemplateOutlet]="linkTypeTpl"
+                        [ngTemplateOutletContext]="{item: menuItem, level: level}">
+                    </ng-container>
+                </a>
+
+                <a navAccordionToggle class="matero-sidemenu-toggle" *ngIf="menuItem.type==='sub'" matRipple
+                    [matRippleDisabled]="!ripple">
+                    <ng-container [ngTemplateOutlet]="linkTypeTpl"
+                        [ngTemplateOutletContext]="{item: menuItem, level: level}">
+                    </ng-container>
+                </a>
+
+                <ng-container [ngTemplateOutlet]="menuListTpl" [ngTemplateOutletContext]="{
+                          menuList: menuItem.children,
+                          parentRoute: parentRoute.concat([menuItem.route]),
+                          level: level + 1
+                        }">
+                </ng-container>
+            </li>
+        </ng-container>
+    </ul>
+</ng-template> -->
+
+<!-- <ng-template #linkTypeTpl let-item="item" let-level="level">
+    <mat-icon class="menu-icon" *ngIf="level===0">{{item.icon}}</mat-icon>
+    <span class="menu-name">{{item.name | translate | titlecase}}</span>
+    <span class="menu-label bg-{{item.label.color}}" *ngIf="item.label">
+        {{item.label.value}}
+    </span>
+    <span fxFlex></span>
+    <span class="menu-badge bg-{{item.badge.color}}" *ngIf="item.badge">
+        {{item.badge.value}}
+    </span>
+    <mat-icon class="menu-caret" *ngIf="item.type!=='link'">
+        {{item.type==='sub' ? 'arrow_drop_down' : 'launch'}}
+    </mat-icon>
+</ng-template> -->
+
+
+
+
+<!-- <ng-container [ngTemplateOutlet]="menuListTpl"
+    [ngTemplateOutletContext]="{menuList: menu$ | async, parentRoute: [], level: 0}">
+</ng-container>
+
+<ng-template #menuListTpl let-menuList="menuList" let-parentRoute="parentRoute" let-level="level">
+    <ul navAccordion class="matero-sidemenu {{level>0 ? 'matero-sidemenu-sub' : ''}} level-{{level}}">
+        <ng-container *ngFor="let menuItem of menuList">
+            <ng-template [ngxPermissionsOnly]="menuItem.permissions?.only"
+                [ngxPermissionsExcept]="menuItem.permissions?.except">
+
+                <li navAccordionItem class="matero-sidemenu-item" routerLinkActive="active" [group]="menuItem.route"
+                    [type]="menuItem.type">
+
+                    <a class="matero-sidemenu-link" [routerLink]="buildRoute(parentRoute.concat([menuItem.route]))"
+                        *ngIf="menuItem.type==='link'" matRipple [matRippleDisabled]="!ripple">
+                        <ng-container [ngTemplateOutlet]="linkTypeTpl"
+                            [ngTemplateOutletContext]="{item: menuItem, level: level}">
+                        </ng-container>
+                    </a>
+
+                    <a class="matero-sidemenu-link" [href]="menuItem.route" *ngIf="menuItem.type==='extLink'" matRipple
+                        [matRippleDisabled]="!ripple">
+                        <ng-container [ngTemplateOutlet]="linkTypeTpl"
+                            [ngTemplateOutletContext]="{item: menuItem, level: level}">
+                        </ng-container>
+                    </a>
+
+                    <a class="matero-sidemenu-link" [href]="menuItem.route" target="_blank"
+                        *ngIf="menuItem.type==='extTabLink'" matRipple [matRippleDisabled]="!ripple">
+                        <ng-container [ngTemplateOutlet]="linkTypeTpl"
+                            [ngTemplateOutletContext]="{item: menuItem, level: level}">
+                        </ng-container>
+                    </a>
+
+                    <a navAccordionToggle class="matero-sidemenu-toggle" *ngIf="menuItem.type==='sub'" matRipple
+                        [matRippleDisabled]="!ripple">
+                        <ng-container [ngTemplateOutlet]="linkTypeTpl"
+                            [ngTemplateOutletContext]="{item: menuItem, level: level}">
+                        </ng-container>
+                    </a>
+
+                    <ng-container [ngTemplateOutlet]="menuListTpl" [ngTemplateOutletContext]="{
+                          menuList: menuItem.children,
+                          parentRoute: parentRoute.concat([menuItem.route]),
+                          level: level + 1
+                        }">
+                    </ng-container>
+                </li>
+
+            </ng-template>
+        </ng-container>
+    </ul>
+</ng-template>
+
+<ng-template #linkTypeTpl let-item="item" let-level="level">
+    <mat-icon class="menu-icon" *ngIf="level===0">{{item.icon}}</mat-icon>
+    <span class="menu-name">{{item.name | translate}}</span>
+    <span class="menu-label bg-{{item.label.color}}" *ngIf="item.label">
+        {{item.label.value}}
+    </span>
+    <span fxFlex></span>
+    <span class="menu-badge bg-{{item.badge.color}}" *ngIf="item.badge">
+        {{item.badge.value}}
+    </span>
+    <mat-icon class="menu-caret" *ngIf="item.type!=='link'">
+        {{item.type==='sub' ? 'arrow_drop_down' : 'launch'}}
+    </mat-icon>
+</ng-template> -->

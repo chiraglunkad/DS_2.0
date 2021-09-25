@@ -1,0 +1,28 @@
+// @mixin make-grid-columns($i: 1, $list: ".col") {
+//   @each $breakpoint, $infix in $breakpoint-infixs {
+//     $infix: if($infix == "", "", "-#{$infix}");
+
+//     @if ($infix != "") {
+//       $list: "#{$list}, .col#{$infix}";
+//     }
+
+//     @for $i from 1 through $grid-columns {
+//       $list: "#{$list}, .col#{$infix}-#{$i}";
+//     }
+//   }
+
+//   #{$list} {
+//     position: relative;
+//     width: 100%;
+//   }
+// }
+
+// @mixin loop-grid-columns($columns: $grid-columns, $breakpoint-infix: "") {
+//   $infix: if($breakpoint-infix == "", "", "-#{$breakpoint-infix}");
+
+//   .col#{$infix} {
+//     flex-basis: 0;
+//     flex-grow: 1;
+//     max-width: 100%;
+//   }
+// }
